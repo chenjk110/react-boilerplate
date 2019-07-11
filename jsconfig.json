@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
     "baseUrl": "./",
-    "allowSyntheticDefaultImports": false,
-    "checkJs": true,
     "paths": {
       "@/*": ["src/*"],
       "@components/*": ["src/components/*", "src/components/index"],
@@ -10,5 +8,6 @@
       "@assets/*": ["src/assets/*", "src/assets/index"],
       "@store/*": ["src/store/*", "src/store/index"]
     },
-  }
+  },
+  "exclude": ["dist"]
 }
