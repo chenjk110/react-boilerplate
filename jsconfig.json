@@ -1,15 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es6",
     "baseUrl": "./",
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": false,
+    "checkJs": true,
     "paths": {
       "@/*": ["src/*"],
       "@components/*": ["src/components/*", "src/components/index"],
       "@utils/*": ["src/utils/*", "src/utils/index"],
       "@assets/*": ["src/assets/*", "src/assets/index"],
       "@store/*": ["src/store/*", "src/store/index"]
-    }
-  },
-  "exclude": ["node_modules", "dist"]
+    },
+  }
 }
