@@ -1,8 +1,6 @@
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
-const { commonConf } = require('./config')
-
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const { resolve } = require('./utils')
 
 module.exports = merge({
@@ -40,6 +38,7 @@ module.exports = merge({
     new HtmlWebpackPlugin({
       title: 'React Single Page Application',
       template: resolve('../src/index.html')
-    })
+    }),
+    new CleanWebpackPlugin()
   ],
 })
