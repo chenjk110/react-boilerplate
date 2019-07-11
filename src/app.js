@@ -1,9 +1,6 @@
-import React, { ReactDOM } from 'react'
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-function Hello() {
-  return (
-    <div>Hello World</div>
-  )
-}
+import Hello from '@components/Hello'
 
 ReactDOM.render(<Hello />, document.getElementById('root'))

@@ -5,19 +5,20 @@ const { resolve } = require('./utils')
 
 module.exports = merge({
   mode: 'none',
-  context: __dirname,
+  context: resolve('..'),
   entry: {
-    app: '../src/app.js'
+    app: './src/app.js'
   },
   output: {
-    filename: 'bundle.js',
+    filename: 'public/js/[name].bundle.[contenthash:6].js',
     path: resolve('../dist'),
-    publicPath: '/'
+    publicPath: '/public'
   },
   resolve: {
+    extensions: ['.js', '.jsx', '.json'],
     alias: {
       '@': resolve('../src'),
-      '@compnents': resolve('../src/compnents'),
+      '@components': resolve('../src/components'),
       '@utils': resolve('../src/utils'),
       '@assets': resolve('../src/assets'),
       '@store': resolve('../src/store'),
@@ -28,7 +29,7 @@ module.exports = merge({
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         use: 'babel-loader',
         exclude: /node_modules/
       },
