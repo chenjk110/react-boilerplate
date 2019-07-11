@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const { commonConf } = require('./config')
 
-const { resove } = require('./utils')
+const { resolve } = require('./utils')
 
 module.exports = merge({
   mode: 'none',
@@ -13,8 +13,19 @@ module.exports = merge({
   },
   output: {
     filename: 'bundle.js',
-    path: resove('../dist'),
+    path: resolve('../dist'),
     publicPath: '/'
+  },
+  resolve: {
+    alias: {
+      '@': resolve('../src'),
+      '@compnents': resolve('../src/compnents'),
+      '@utils': resolve('../src/utils'),
+      '@assets': resolve('../src/assets'),
+      '@store': resolve('../src/store'),
+      '@public': resolve('../src/public'),
+      '@pages': resolve('../src/pages'),
+    }
   },
   module: {
     rules: [
@@ -28,7 +39,7 @@ module.exports = merge({
   plugins: [
     new HtmlWebpackPlugin({
       title: 'React Single Page Application',
-      template: resove('../src/index.html')
+      template: resolve('../src/index.html')
     })
   ],
 })
