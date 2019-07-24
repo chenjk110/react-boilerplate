@@ -9,7 +9,6 @@ module.exports = merge({
   context: path.resolve(__dirname, '..'),
   entry: {
     app: './src/app.js',
-    react: 'react',
   },
   output: {
     filename: 'static/js/[name].bundle.[hash:6].js',
@@ -39,7 +38,6 @@ module.exports = merge({
       title: 'React Single Page Application',
       /* template file should be absolute path */
       template: path.resolve(__dirname, '..', 'src/index.html'),
-      chunks: ['react', 'app']
     }),
     new CleanWebpackPlugin(),
   ],
