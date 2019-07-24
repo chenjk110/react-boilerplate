@@ -7,7 +7,7 @@ module.exports = mrege(base, {
     host: '0.0.0.0',
     port: 8888,
     hot: true,
-    contentBase: resolve('../dist'),
+    contentBase: 'dist',
     https: false,
     proxy: {}
   }

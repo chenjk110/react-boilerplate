@@ -1,29 +1,28 @@
+const path = require('path')
 const merge = require('webpack-merge')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const { resolve } = require('./utils')
 
 module.exports = merge({
   mode: 'none',
-  context: resolve('..'),
+  context: path.resolve(__dirname, '..'),
   entry: {
-    app: './src/app.js'
+    app: './src/app.js',
+    react: 'react',
   },
   output: {
-    filename: 'public/js/[name].bundle.[contenthash:6].js',
-    path: resolve('../dist'),
-    publicPath: '/public'
+    filename: 'static/js/[name].bundle.[hash:6].js',
+    chunkFilename: 'static/js/[name].bundle.[chunkhash].js',
+    path: path.resolve(__dirname, '../dist'),
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
+    modules: ['src', 'node_modules'],
+    /* alias should be absolute path */
     alias: {
-      '@': resolve('../src'),
-      '@components': resolve('../src/components'),
-      '@utils': resolve('../src/utils'),
-      '@assets': resolve('../src/assets'),
-      '@store': resolve('../src/store'),
-      '@public': resolve('../src/public'),
-      '@pages': resolve('../src/pages'),
+      '@': path.resolve(__dirname, '..', 'src')
     }
   },
   module: {
@@ -38,8 +37,10 @@ module.exports = merge({
   plugins: [
     new HtmlWebpackPlugin({
       title: 'React Single Page Application',
-      template: resolve('../src/index.html')
+      /* template file should be absolute path */
+      template: path.resolve(__dirname, '..', 'src/index.html'),
+      chunks: ['react', 'app']
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
   ],
 })
