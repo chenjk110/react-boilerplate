@@ -8,7 +8,7 @@ module.exports = merge({
   mode: 'none',
   context: path.resolve(__dirname, '..'),
   entry: {
-    app: './src/app.js',
+    main: './src/index.js',
   },
   output: {
     filename: 'static/js/[name].bundle.[hash:6].js',
@@ -34,11 +34,11 @@ module.exports = merge({
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'React Single Page Application',
       /* template file should be absolute path */
       template: path.resolve(__dirname, '..', 'src/index.html'),
     }),
-    new CleanWebpackPlugin(),
   ],
 })
