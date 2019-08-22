@@ -1,6 +1,6 @@
-const path = require('path')
-const merge = require('webpack-merge')
 const webpack = require('webpack')
+const merge = require('webpack-merge')
+const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
@@ -11,17 +11,17 @@ module.exports = merge({
     main: './src/index.js',
   },
   output: {
-    filename: 'static/js/[name].bundle.[hash:6].js',
-    chunkFilename: 'static/js/[name].bundle.[chunkhash].js',
+    filename: 'static/js/[name].[hash].js',
+    chunkFilename: 'static/js/[name].[chunkhash].js',
     path: path.resolve(__dirname, '../dist'),
-    publicPath: '/'
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
     modules: ['src', 'node_modules'],
     /* alias should be absolute path */
     alias: {
-      '@': path.resolve(__dirname, '..', 'src')
+      '@': path.resolve(__dirname, '../src'),
     }
   },
   module: {
@@ -30,15 +30,15 @@ module.exports = merge({
         test: /\.jsx?$/,
         use: 'babel-loader',
         exclude: /node_modules/
-      },
+      }
     ]
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'React Single Page Application',
+      title: 'React Single Page Application Boilerplate',
       /* template file should be absolute path */
       template: path.resolve(__dirname, '..', 'src/index.html'),
-    }),
+    })
   ],
 })

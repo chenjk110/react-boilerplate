@@ -1,0 +1,6 @@
+@import "~@/styles/vars.css";
+
+.btn__button {
+  background: none;
+  color: red;
+}
