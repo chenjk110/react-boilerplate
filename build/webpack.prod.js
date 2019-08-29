@@ -4,6 +4,7 @@ const common = require('./webpack.common')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
 
 module.exports = merge(common, {
   mode: 'production',
@@ -13,7 +14,13 @@ module.exports = merge(common, {
       new TerserWebpackPlugin({
         sourceMap: true
       }),
-      new OptimizeCssAssetsPlugin({})
+      new OptimizeCssAssetsPlugin({
+        cssProcessorOptions: {
+          map: {
+            inline: false
+          }
+        }
+      })
     ],
     splitChunks: {
       cacheGroups: {
@@ -58,6 +65,10 @@ module.exports = merge(common, {
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].[contenthash].css',
       chunkFilename: 'static/css/[id].[contenthash].css'
+    }),
+    new CompressionWebpackPlugin({
+      test: /\.(js|css|png|jpe?g|bmp|gif)/,
+      filename: '[file].gz'
     })
   ]
 })
